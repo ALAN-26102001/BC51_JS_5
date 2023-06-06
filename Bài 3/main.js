@@ -11,3 +11,26 @@ function tinhThue() {
     var hoTen = document.querySelector('#hoTen_b3').value;
     var thuNhapNam = Number(document.querySelector('#thuNhap_b3').value);
     var phuThuoc = Number(document.querySelector('#phuThuoc_b3').value);
+    
+    /*Thanh Toán */
+    var tienThue = 0;
+
+    if (0 < thuNhapNam && thuNhapNam <= 60000000) {
+        tienThue = (thuNhapNam - 4000000 - (phuThuoc * 1600000)) * THUE0_60;
+    } else if (60000000 < thuNhapNam && thuNhapNam <= 120000000) {
+        tienThue = (thuNhapNam - 4000000 - (phuThuoc * 1600000)) * THUE60_120;
+    } else if (120000000 < thuNhapNam && thuNhapNam <= 210000000) {
+        tienThue = (thuNhapNam - 4000000 - (phuThuoc * 1600000)) * THUE120_210;
+    } else if (210000000 < thuNhapNam && thuNhapNam <= 384000000) {
+        tienThue = (thuNhapNam - 4000000 - (phuThuoc * 1600000)) * THUE210_384;
+    } else if (384000000 < thuNhapNam && thuNhapNam <= 624000000) {
+        tienThue = (thuNhapNam - 4000000 - (phuThuoc * 1600000)) * THUE384_624;
+    } else if (624000000 < thuNhapNam && thuNhapNam <= 960000000) {
+        tienThue = (thuNhapNam - 4000000 - (phuThuoc * 1600000)) * THUE624_960;
+    } else if (thuNhapNam > 960000000) {
+        tienThue = (thuNhapNam - 4000000 - (phuThuoc * 1600000)) * THUE960_PLUS;
+    }
+    
+    document.querySelector('#kqBai3').innerHTML = 'Họ Tên: ' + hoTen +  '. Tiền Thuế Thu Nhập Cá Nhân: ' + tienThue.toLocaleString() + ' VND';
+}
+document.querySelector('#btnBai3').onclick = tinhThue;
